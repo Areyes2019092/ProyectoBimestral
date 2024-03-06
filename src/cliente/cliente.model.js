@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 
+//Tengo que agregar mas campos
+
 const ClienteSchema = mongoose.Schema({
     name:{
         type: String,
