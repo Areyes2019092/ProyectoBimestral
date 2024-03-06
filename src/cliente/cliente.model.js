@@ -13,9 +13,21 @@ const ClienteSchema = mongoose.Schema({
         type: String,
         required: [true, "El email del cliente es obligatorio"]
     },
+    //Me falta hacer el rol
     password:{
         type: String,
-        required: [true]
+        required: [true, "La contrasña del cliente es obligatoria"]
+    },
+    estado:{
+        type: Boolean,
+        default: true
     }
-    
 });
+
+ClienteSchema.methods.toJSON = function(){
+    const { __v, password, _id, ...clientess } = this.toObject();
+    clientess.uid = _id;
+    return clientess
+}
+
+export default mongoose.model("Cliente", ClienteSchema);
