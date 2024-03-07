@@ -1,8 +1,40 @@
-import bcryptjs from "bcryptjs";
+import bcryptjs, { compare } from "bcryptjs";
 import { generarJWT } from "../helpers/generar-jwt";
 import Cliente from './cliente.model.js'
 
+//ALT + 96 Tilde invertida
 
+export const login = async(req, res)=>{
+    var tok;
+    const { user, password } = req.body;
+    var cliente = await Cliente.findOne({user: user});
+    if(!cliente){
+        cliente = await Cliente.findOne({email: user});
+        if(!cliente){
+            return res.status(400).json({msg:'El usuario no existe'});
+    }
+}
+    const log = bcryptjs.compareSync(password, cliente.password);
+    tok = await generarJWT(cliente.id);
+    res.status(200).json({msg: `Bienvenido, aqui esta su token: ${tok}`});
+};
+
+
+//Tengo que agregar nuevos datos
+export const registrar = async(req, res)=>{
+    const { name, user, email, password } = req.body;
+    try{
+        const salt = bcryptjs.genSaltSync();
+        const cliente = new Cliente({name, user, email, password});
+        cliente.password = bcryptjs.hashSync( password, salt);
+
+        await cliente.save();
+        res.status(200).json({msg: `Cliente registrado correctamente ${cliente}`});
+
+    }catch(error){
+        res.status(400).json({msg:`ERROR, El cliente no se pudo registrar s${error}`});
+    }
+};
 
 
 
