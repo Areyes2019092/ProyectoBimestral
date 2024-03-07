@@ -8,9 +8,12 @@ export const login = async(req, res)=>{
     var tok;
     const { user, password } = req.body;
     var cliente = await Cliente.findOne({user: user});
+    //Busco el cliente por medio del usuario y si no lo encuentra
+    // busca por medio del email
     if(!cliente){
         cliente = await Cliente.findOne({email: user});
         if(!cliente){
+            //Si no lo encuentro ni por usuario o email es usuario no existe
             return res.status(400).json({msg:'El usuario no existe'});
     }
 }
@@ -26,6 +29,8 @@ export const registrar = async(req, res)=>{
     try{
         const salt = bcryptjs.genSaltSync();
         const cliente = new Cliente({name, user, email, password});
+        
+        //hasheo la contraseña del cliente antes de guardarla
         cliente.password = bcryptjs.hashSync( password, salt);
 
         await cliente.save();
