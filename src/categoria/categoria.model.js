@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+//Talvez pueda agregar mas campos
 const CategoriaSchema = mongoose.Schema({
     name: {
         type: String,
