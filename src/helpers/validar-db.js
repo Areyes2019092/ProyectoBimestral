@@ -17,7 +17,7 @@ export const existeClienteUser = async(usuario = '')=>{
     if(cliente){
         throw new Error('Este cliente ya existe');
     }
-}
+};
 
 
 //Si el correo ya esta registrado marco error
@@ -26,11 +26,19 @@ export const existeClienteCorreo = async(correo = "")=>{
     if(clienteCorreo){
         throw new Error('El correo ya esta en uso')
     }
-}
+};
 
 //Verificar el rol
 export const existeRol = async (rol = "") => {
   if (rol !== "Administrador" && rol !== "Cliente") {
     throw new Error("El rol no es valido");
   }
+};
+
+//verificar categoria existe por el nombre
+export const existeCategoria = async(categoria = "")=>{
+    const verificarCategoria = await Categoria.findOne({name: categoria });
+    if(verificarCategoria){
+        throw new Error('La categoria ya existe');
+    }
 };
