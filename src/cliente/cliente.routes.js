@@ -1,3 +1,4 @@
+/*
 import { check } from "express-validator";
 import { login, registrar, editarNombre, editarContrasena } from "./cliente.controller.js";
 import { validarInformacion } from "../middlewares/validarCampos.js";
@@ -25,3 +26,4 @@ router.put(
 )
 
 export default router;
+*/

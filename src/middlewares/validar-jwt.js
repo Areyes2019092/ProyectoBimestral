@@ -13,6 +13,12 @@ export const validarJWT = async(req, res, next) =>{
         if(!cliente){
             res.status(400).json({msg:'El cliente no existe'});
         }
+        if (cliente.estado == false) { 
+            return res.status(400).json({msg: 'El cliente no existe'})
+        }
+
+        req.cliente = cliente;
+        next();
     }catch(e){
     return res.status(401).json({msg: "El token no es valido"});
     }

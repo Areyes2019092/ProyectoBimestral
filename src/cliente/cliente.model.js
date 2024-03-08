@@ -1,3 +1,4 @@
+/*
 import mongoose from "mongoose";
 
 //Tengo que agregar mas campos
@@ -33,3 +34,4 @@ ClienteSchema.methods.toJSON = function(){
 }
 
 export default mongoose.model("Cliente", ClienteSchema);
+*/
