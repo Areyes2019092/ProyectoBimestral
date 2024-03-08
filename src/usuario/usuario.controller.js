@@ -1,6 +1,6 @@
 import bcryptjs from "bcryptjs";
-import { generarJWT } from "../helpers/generar-jwt";
-import Usuario from "./usuario.model";
+import { generarJWT } from "../helpers/generar-jwt.js";
+import Usuario from "./usuario.model.js";
 
 //ALT + 96 Tilde invertida
 
@@ -81,8 +81,22 @@ export const registrar = async (req, res) => {
   }
 };
 
+export const eliminarUsuario = async (req, res) => { 
+    const permitido = req.cliente;
+    const { Password } = req.body;
+    const verificar = await Usuario.findById(permitido.id);
+    const login = bcryptjs.compareSync(Password, verificar.password);
+    if (!login) { 
+        return res.status(400).json({ msg: 'Datos Erroneos' });
+    }
+    await Usuario.findByIdAndUpdate(permitido.id, { estado: false });
+    res.status(200).json({ msg: 'Usuario eliminado' });
+
+}
+
+
 export const administradorEditar = async (req, res) => {
-  var { name, password, rol } = req.body;
+    var { user, email,  password, ...resto } = req.body;
   const { id } = req.params;
   const permitido = req.cliente;
   const deshabilitado = await Usuario.findById(id);
@@ -91,7 +105,9 @@ export const administradorEditar = async (req, res) => {
   }
   if (!deshabilitado) {
     return res.status(400).json({ msg: "El usuario esta deshabilitado" });
-  }
+    }
+    await Usuario.findByIdAndUpdate(id, { resto });
+    res.status(200).json({ msg: 'Usuario Actualizado' });
 };
 
 export const editarContrasena = async (req, res) => {

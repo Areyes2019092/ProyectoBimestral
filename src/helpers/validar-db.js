@@ -1,4 +1,5 @@
-import Cliente from '../cliente/cliente.model.js';
+import Categoria from '../categoria/categoria.model.js';
+import Cliente from '../usuario/usuario.model.js';
 
 
 //Si el cliente no existe tira error
@@ -8,6 +9,7 @@ export const noExisteClienteId = async(id = '' )=>{
         throw new Error('El cliente no existe');
     }
 };
+
 
 //Si el cliente existe tira error
 export const existeClienteUser = async(usuario = '')=>{
@@ -25,3 +27,10 @@ export const existeClienteCorreo = async(correo = "")=>{
         throw new Error('El correo ya esta en uso')
     }
 }
+
+//Verificar el rol
+export const existeRol = async (rol = "") => {
+  if (rol !== "Administrador" && rol !== "Cliente") {
+    throw new Error("El rol no es valido");
+  }
+};
