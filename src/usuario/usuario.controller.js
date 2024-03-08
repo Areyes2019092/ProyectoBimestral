@@ -74,10 +74,10 @@ export const registrar = async (req, res) => {
     res
       .status(200)
       .json({ msg: `Usuario registrado correctamente ${cliente}` });
-  } catch (error) {
+  } catch (e) {
     res
       .status(500)
-      .json({ msg: `ERROR, El cliente no se pudo registrar s${error}` });
+      .json({ msg: `ERROR, El cliente no se pudo registrar s${e}` });
   }
 };
 
