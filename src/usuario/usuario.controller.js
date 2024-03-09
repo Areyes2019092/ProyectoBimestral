@@ -134,7 +134,7 @@ export const administradorEditar = async (req, res) => {
   }
   await Usuario.findByIdAndUpdate(id, { name: name, password: password, rol: rol });
   const UsuarioActualizado = await Usuario.findById(id);
-  return res.status(400).json({
+  return res.status(200).json({
     msg: 'Usuario Actualizado',
     UsuarioActualizado
   });
