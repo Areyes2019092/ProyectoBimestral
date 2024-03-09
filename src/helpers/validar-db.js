@@ -1,12 +1,27 @@
 import Categoria from '../categoria/categoria.model.js';
 import Cliente from '../usuario/usuario.model.js';
-
+import Producto from '../producto/producto.model.js';
 
 //Si el cliente no existe tira error
 export const noExisteClienteId = async(id = '' )=>{
     const cliente = await Cliente.findById(id);
     if(!cliente){
         throw new Error('El cliente no existe');
+    }
+};
+
+export const existeProducto = async(producto = "")=>{
+    const existencia = await Producto.findOne({name: producto});
+    if(existencia){
+        throw new Error('El producto ya existe')
+    }
+}
+
+//Voy a verificar si no existe la categoria
+export const noExisteCategoria = async(categoria = "")=>{
+    const verificarCategoria = await Categoria.findOne({name: categoria });
+    if(!verificarCategoria){
+        throw new Error('La categoria no existe');
     }
 };
 

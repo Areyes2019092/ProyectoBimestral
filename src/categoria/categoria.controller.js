@@ -1,6 +1,5 @@
-import { response, request } from "express";
 import Categoria from "./categoria.model.js";
-
+import { response, request } from "express";
 
 
 /*Para que las verificaciones sean mas faciles
