@@ -1,0 +1,99 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Categoria",
+    "dateExported": "2024-03-09T02:57:29.395Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "e8898502-9493-4be7-9fe6-494ef69b048a",
+            "colId": "6fdad24d-3277-40df-bcc7-247a86239987",
+            "containerId": "",
+            "name": "publicarCategoria",
+            "url": "http://localhost:3000/tiendaOnline/v1/categorias",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-03-09T02:22:29.018Z",
+            "modified": "2024-03-09T02:36:43.443Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWViODZlY2VkNmY4OWY0ZDgzOGQ0NGUiLCJpYXQiOjE3MDk5MzQzMjAsImV4cCI6MTcwOTkzNzkyMH0.cBvJtG7WJ9enwPlqd3H0C5ocaHcY3spx9SgqpIOxjHw"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\" : \"Educacion\"\n}",
+                "form": []
+            },
+            "reqType": "post",
+            "tests": []
+        },
+        {
+            "_id": "57b5f046-612b-4f2d-a314-17a7447a179c",
+            "colId": "6fdad24d-3277-40df-bcc7-247a86239987",
+            "containerId": "",
+            "name": "actualizarCategoria",
+            "url": "http://localhost:3000/tiendaOnline/v1/categorias/65eb893a7439f86b582c5901",
+            "method": "PUT",
+            "sortNum": 20000,
+            "created": "2024-03-09T02:22:29.019Z",
+            "modified": "2024-03-09T02:37:46.195Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWViODZlY2VkNmY4OWY0ZDgzOGQ0NGUiLCJpYXQiOjE3MDk5MzgwMjMsImV4cCI6MTcwOTk0MTYyM30.F26dKKdYtL2Qv-e48OpC1HMtqjClaplSYyN2X0_apwE"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\" : \"Entretenimiento\"\n}",
+                "form": []
+            },
+            "reqType": "put",
+            "tests": []
+        },
+        {
+            "_id": "5e1495d4-3bb5-4df7-ae26-28b623e298c5",
+            "colId": "6fdad24d-3277-40df-bcc7-247a86239987",
+            "containerId": "",
+            "name": "getCategoria",
+            "url": "http://localhost:3000/tiendaOnline/v1/categorias",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-03-09T02:22:29.021Z",
+            "modified": "2024-03-09T02:38:07.281Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWViODZlY2VkNmY4OWY0ZDgzOGQ0NGUiLCJpYXQiOjE3MDk5MzgwMjMsImV4cCI6MTcwOTk0MTYyM30.F26dKKdYtL2Qv-e48OpC1HMtqjClaplSYyN2X0_apwE"
+                }
+            ],
+            "params": [],
+            "reqType": "get",
+            "tests": []
+        },
+        {
+            "_id": "b3dc7648-d639-4f46-a41d-fe7f2cba51eb",
+            "colId": "6fdad24d-3277-40df-bcc7-247a86239987",
+            "containerId": "",
+            "name": "eliminarCategoria",
+            "url": "http://localhost:3000/tiendaOnline/v1/categorias/65ea8f35e637d597954f97f2",
+            "method": "DELETE",
+            "sortNum": 30000,
+            "created": "2024-03-09T02:22:29.020Z",
+            "modified": "2024-03-09T02:38:29.282Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWVhNzQ2NTU0YTQ1ZDk2YjA4NGNjNTkiLCJpYXQiOjE3MDk4NzA4OTMsImV4cCI6MTcwOTg3NDQ5M30.PWqFyDrcMyG2SlEbtyVpTCABdbTO0vjrboH47yGTL3o"
+                }
+            ],
+            "params": [],
+            "reqType": "del",
+            "tests": []
+        }
+    ]
+}

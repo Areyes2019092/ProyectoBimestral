@@ -7,6 +7,7 @@ import cors from "cors";
 import Producto from "../src/producto/producto.routes.js";
 import Usuario from "../src/usuario/usuario.routes.js";
 import Categoria from "../src/categoria/categoria.routes.js";
+import Carrito from "../src/carrito/carrito.routes.js";
 import { dbConnection } from "./mongo.js";
 class Server {
     constructor() {
@@ -15,7 +16,7 @@ class Server {
       this.usuarioPath = "/tiendaOnline/v1/usuarios";
       this.categoriaPath = "/tiendaOnline/v1/categorias";
       this.productoPath = "/tiendaOnline/v1/productos";
-  
+      this.carritoPath = "/tiendaOnline/v1/carrito";  
       this.middlewares();
       this.conectarDB();
       this.routes();
@@ -41,6 +42,7 @@ class Server {
       this.app.use(this.usuarioPath, Usuario);
       this.app.use(this.categoriaPath, Categoria);
       this.app.use(this.productoPath, Producto);
+      this.app.use(this.carritoPath, Carrito);
     }
   
     listen() {
