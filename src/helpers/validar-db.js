@@ -43,7 +43,7 @@ export const existeClienteUser = async(usuario = '')=>{
 };
 
 export const productoId = async(id = "")=>{
-    const existencia = await Producto.findById({id});
+    const existencia = await Producto.findById(id);
     if(!existencia){
         throw new Error('El producto no existe')
     }

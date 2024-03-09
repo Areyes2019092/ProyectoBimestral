@@ -1,43 +1,24 @@
 {
     "client": "Thunder Client",
     "collectionName": "Carrito",
-    "dateExported": "2024-03-09T04:54:54.328Z",
+    "dateExported": "2024-03-11T01:16:01.983Z",
     "version": "1.1",
     "folders": [],
     "requests": [
         {
-            "_id": "5344f853-e46c-44e9-ab32-466a33cddde5",
-            "colId": "27cf9213-aac2-4135-97f3-e83ce5b21d46",
+            "_id": "3a70854c-dcc2-4eaa-81c9-76857e42c9e1",
+            "colId": "504d0b35-5faf-4799-b2fa-6b174c2bba64",
             "containerId": "",
             "name": "crearCarrito",
             "url": "http://localhost:3000/tiendaOnline/v1/carrito",
             "method": "POST",
             "sortNum": 10000,
-            "created": "2024-03-09T04:52:08.076Z",
-            "modified": "2024-03-09T04:52:08.076Z",
+            "created": "2024-03-10T23:19:37.128Z",
+            "modified": "2024-03-11T00:37:30.311Z",
             "headers": [
                 {
                     "name": "x-token",
-                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWViODZlY2VkNmY4OWY0ZDgzOGQ0NGUiLCJpYXQiOjE3MDk5NDY1NzEsImV4cCI6MTcwOTk1MDE3MX0.55nzE1qpm-kuhmhEyZTGcRbaa90FAlWTu2VWTPGVNKk"
-                }
-            ],
-            "params": [],
-            "tests": []
-        },
-        {
-            "_id": "892121bf-1606-46da-94b2-8db5f24b642c",
-            "colId": "27cf9213-aac2-4135-97f3-e83ce5b21d46",
-            "containerId": "",
-            "name": "hacerCompra",
-            "url": "http://localhost:3000/tiendaOnline/v1/carrito/comprar/",
-            "method": "POST",
-            "sortNum": 20000,
-            "created": "2024-03-09T04:52:34.922Z",
-            "modified": "2024-03-09T04:53:49.975Z",
-            "headers": [
-                {
-                    "name": "x-token",
-                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWViODZlY2VkNmY4OWY0ZDgzOGQ0NGUiLCJpYXQiOjE3MDk5NTQ4NDksImV4cCI6MTcwOTk1ODQ0OX0.1fgvuSbxk0Bs2XMPSRm0pT9yvmxSjvvGcG6MZTaAfL4"
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWVlNDE3MTY4ZjQ5MGQ5MGQwMmNkYTciLCJpYXQiOjE3MTAxMTMzMDgsImV4cCI6MTcxMDEyMDUwOH0.VD3einuVj3mj7n1vgRrKCEAvYNMaasppwNypMJVX6_M"
                 }
             ],
             "params": [],
@@ -45,25 +26,45 @@
             "tests": []
         },
         {
-            "_id": "ae5e69f1-8fc1-4900-8f0a-0467385a4488",
-            "colId": "27cf9213-aac2-4135-97f3-e83ce5b21d46",
+            "_id": "c8b69e95-c07a-4b75-80c7-800267d5237e",
+            "colId": "504d0b35-5faf-4799-b2fa-6b174c2bba64",
+            "containerId": "",
+            "name": "hacerCompra",
+            "url": "http://localhost:3000/tiendaOnline/v1/carrito/comprar/",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-03-10T23:19:37.129Z",
+            "modified": "2024-03-11T00:37:54.744Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWVlNDE3MTY4ZjQ5MGQ5MGQwMmNkYTciLCJpYXQiOjE3MTAxMTMzMDgsImV4cCI6MTcxMDEyMDUwOH0.VD3einuVj3mj7n1vgRrKCEAvYNMaasppwNypMJVX6_M"
+                }
+            ],
+            "params": [],
+            "reqType": "post",
+            "tests": []
+        },
+        {
+            "_id": "43833ff6-ab77-4488-97e8-b1f5126c71e4",
+            "colId": "504d0b35-5faf-4799-b2fa-6b174c2bba64",
             "containerId": "",
             "name": "AgregarCarritoP",
             "url": "http://localhost:3000/tiendaOnline/v1/carrito",
             "method": "PUT",
             "sortNum": 30000,
-            "created": "2024-03-09T04:53:15.866Z",
-            "modified": "2024-03-09T04:54:43.562Z",
+            "created": "2024-03-10T23:19:37.130Z",
+            "modified": "2024-03-11T00:40:13.498Z",
             "headers": [
                 {
                     "name": "x-token",
-                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWViODZlY2VkNmY4OWY0ZDgzOGQ0NGUiLCJpYXQiOjE3MDk5NTQ4NDksImV4cCI6MTcwOTk1ODQ0OX0.1fgvuSbxk0Bs2XMPSRm0pT9yvmxSjvvGcG6MZTaAfL4"
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWVlNDE3MTY4ZjQ5MGQ5MGQwMmNkYTciLCJpYXQiOjE3MTAxMTMzMDgsImV4cCI6MTcxMDEyMDUwOH0.VD3einuVj3mj7n1vgRrKCEAvYNMaasppwNypMJVX6_M"
                 }
             ],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"producto\": \"Televisor\",\n  \"cantidadProducto\": 6\n}\n",
+                "raw": "{\n  \"producto\": \"Nada\",\n  \"cantidadProducto\": 6\n}\n",
                 "form": []
             },
             "reqType": "put",

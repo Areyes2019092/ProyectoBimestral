@@ -63,12 +63,14 @@ export const registrar = async (req, res) => {
       rol = "Administrador";
       cliente = new Usuario({ name, user, email, password, rol });
     } else {
-      //No incluire el rol, entonces sera default cliente
+      //No incluiré el rol, entonces será el cliente predeterminado
       cliente = new Usuario({ name, user, email, password });
     }
-    const salt = bcryptjs.genSalt();
-    //hasheo la contraseña del cliente antes de guardarla
-    cliente.password = bcryptjs.hashSync(password, salt);
+    
+    // Generar el salt de forma asíncrona
+    const salt = await bcryptjs.genSalt();
+    // Hashear la contraseña del cliente antes de guardarla
+    cliente.password = await bcryptjs.hash(password, salt);
 
     await cliente.save();
     res
@@ -77,7 +79,7 @@ export const registrar = async (req, res) => {
   } catch (e) {
     res
       .status(500)
-      .json({ msg: `ERROR, El cliente no se pudo registrar s${e}` });
+      .json({ msg: `ERROR, El cliente no se pudo registrar ${e}` });
   }
 };
 

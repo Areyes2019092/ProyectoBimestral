@@ -1,25 +1,25 @@
-import  JWT  from "jsonwebtoken";
+import JWT from "jsonwebtoken";
 import Cliente from "../usuario/usuario.model.js";
 
-export const validarJWT = async(req, res, next) =>{
+export const validarJWT = async(req, res, next) => {
     const tok = req.header("x-token");
-    if(!tok){
-        return res.status(400).json({msg:"No existe el token"});
+    if (!tok) {
+        return res.status(400).json({ msg: "No existe el token" });
     }
     try {
-        const { uid } = JWT.verify.apply(tok, process.env.SECRETORPRIVATEKEY);
-        const cliente = await Cliente.findOne({_id: uid});
+        const { uid } = JWT.verify(tok, process.env.SECRET_OR_PRIVATE_KEY);
+        const cliente = await Cliente.findOne({ _id: uid });
 
-        if(!cliente){
-            res.status(400).json({msg:'El cliente no existe'});
+        if (!cliente) {
+            return res.status(400).json({ msg: 'El cliente no existe' });
         }
-        if (cliente.estado == false) { 
-            return res.status(400).json({msg: 'El cliente no existe'})
+        if (cliente.estado === false) {
+            return res.status(400).json({ msg: 'El cliente no existe' });
         }
 
         req.cliente = cliente;
         next();
-    }catch(e){
-    return res.status(401).json({msg: "El token no es valido"});
+    } catch (e) {
+        return res.status(401).json({ msg: "El token no es válido" });
     }
 };

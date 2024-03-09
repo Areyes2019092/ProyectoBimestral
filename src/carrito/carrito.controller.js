@@ -28,39 +28,53 @@ export const obtenerFactura = async(req, res)=>{
 
 
 //Hacer una orden
-export const hacerCompra = async(req, res) =>{
+/** 
+export const hacerCompra = async (req, res) => {
     const permitido = req.cliente;
-    const carrito = await Carrito.findOne({nombreCarrito: permitido._id}).populate('productos.producto');
-    if(!carrito || carrito.productos.length === 0){
-        return res.status(400).json({ msg: "El carrito no puede estar vacio" });
+    const cart = await Carrito.findOne({ nombreCarrito: permitido._id }).populate('productos.producto');
+
+    if (!cart || cart.productos.length === 0) {
+        return res.status(404).json({ msg: "El carrito de compras está vacío" });
     }
+
     let total = 0;
-    const informacion = carrito.productos.map(item =>{
-        const totalAPagar = item.producto.precio * item.cantidadProducto;
-        total += totalAPagar;
-        return{
-            nombreCarrito: item.producto.nombreCarrito,
-            cantidadProducto: item.cantidadProducto,
-            cantidadTotal: totalAPagar
-        };
+    const productsDetails = []; 
+
+    cart.productos.forEach(item => {
+        const productTotal = item.producto.precio * item.cantidadProducto;
+        total += productTotal;
+
+        productsDetails.push({
+            nombre: item.producto.nombre,
+            cantidad: item.cantidadProducto,
+            total: productTotal
+        });
     });
+
     const factura = new Factura({
-        carrito: carrito._id, 
+        carrito: cart._id,
         cliente: permitido._id,
         total,
-        productos: informacion
+        productos: productsDetails 
     });
 
-    for(const { producto, cantidadProducto }of carrito.productos){
-        await Producto.findByIdAndUpdate(producto._id, { $inc:{ cantidadVentas: cantidadProducto, existencia: -cantidadProducto }});
-    } 
-    carrito.productos = [];
-    carrito.total = 0;
-    await carrito.save();
-    await factura.save();
-    res.status(200).json({msg:'Orden completada'});
-};
+    for (const item of cart.productos) {
+        const productId = item.producto._id;
+        const quantitySold = item.cantidadProducto;
 
+        await Producto.findByIdAndUpdate(productId, { $inc: { cantidadVentas: quantitySold, stock: -quantitySold } });
+    }
+
+    // Limpiar carrito
+    cart.productos = [];
+    cart.cantidadTotal = 0; 
+    await cart.save();
+
+    await factura.save();
+
+    res.status(200).json({ msg: "Compra realizada con éxito", factura, productsDetails });
+};
+**/
 export const agregrarProducto = async(req, res)=>{
     const permitido = req.cliente;
     const { producto, cantidadProducto } = req.body;
