@@ -34,6 +34,14 @@ export const existeClienteUser = async(usuario = '')=>{
     }
 };
 
+export const productoId = async(id = "")=>{
+    const existencia = await Producto.findById({id});
+    if(!existencia){
+        throw new Error('El producto no existe')
+    }
+}
+
+
 
 //Si el correo ya esta registrado marco error
 export const existeClienteCorreo = async(correo = "")=>{
