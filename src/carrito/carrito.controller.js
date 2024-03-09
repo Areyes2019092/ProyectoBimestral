@@ -59,6 +59,7 @@ a otra colección, y cada elemento de products tiene un campo llamado
 product que es una referencia a documentos en esa otra colección.
 */
 //Hay que ver donde dice productos
+/*
 export const hacerCompra = async (req, res) => {
     const usuarioAutenticado = req.cliente;
     const cart = await Carrito.findOne({ nombreCarrito: usuarioAutenticado._id }).populate('productos.producto');
@@ -67,7 +68,7 @@ export const hacerCompra = async (req, res) => {
         return res.status(404).json({ msg: "Shopping cart is empty" });
     }
 
-    let total = 0;
+    let total;
     const productsDetails = []; 
 
     cart.productos.forEach(item => {
@@ -84,7 +85,7 @@ export const hacerCompra = async (req, res) => {
     const factura = new Factura({
         carrito: cart._id,
         cliente: usuarioAutenticado._id,
-        compraTotal,
+        compraTotal : total,
         productos: productsDetails 
     });
 
@@ -104,6 +105,51 @@ export const hacerCompra = async (req, res) => {
     res.status(200).json({ msg: "Purchase completed successfully", factura, productsDetails });
 };
 
+*/
+
+export const hacerCompra = async (req, res) => {
+    const usuarioAutenticado = req.cliente;
+    const cart = await Carrito.findOne({ nombreCarrito: usuarioAutenticado._id }).populate('productos.producto');
+
+    if (!cart || cart.productos.length === 0) {
+        return res.status(404).json({ msg: "El carrito esta vacio" });
+    }
+
+    let compraTotal = 0;
+    const detalles = []; 
+
+    cart.productos.forEach(item => {
+        const productoTotal = item.producto.precio * item.cantidadProducto;
+        compraTotal += productoTotal;
+
+        detalles.push({
+            name: item.producto.name,
+            cantidadProducto: item.cantidadProducto,
+            compraTotal: productoTotal
+        });
+    });
+
+    const factura = new Factura({
+        carrito: cart._id,
+        cliente: usuarioAutenticado._id,
+        compraTotal,
+        productos: detalles 
+    });
+
+    for (const item of cart.productos) {
+        const productoId = item.producto._id;
+        const vendido = item.cantidadProducto;
+        await Producto.findByIdAndUpdate(productoId, { $inc: {ventas : vendido, existencia: -vendido } });
+    }
+// limpiar
+    cart.productos = [];
+    cart.compraTotal = 0; 
+    await cart.save();
+
+    await factura.save();
+
+    res.status(200).json({ msg: "Compra completada", factura, detalles });
+};
 
 
 
