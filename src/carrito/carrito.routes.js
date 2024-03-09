@@ -3,7 +3,7 @@ import { validarJWT } from "../middlewares/validar-jwt.js";
 import { validarInformacion } from "../middlewares/validarCampos.js";
 import { check } from "express-validator";
 import { noExisteProducto } from "../helpers/validar-db.js";
-import { hacerCompra , obtenerFactura ,hacerCarrito, agregrarProducto } from "./carrito.controller.js";
+import { hacerCompra ,obtenerFactura ,hacerCarrito, agregrarProducto, obtenerAdminHistorial } from "./carrito.controller.js";
 
 const router = Router();
 
@@ -34,6 +34,17 @@ router.get(
         validarInformacion
     ],obtenerFactura
 )
+
+//obtener del admin
+router.get(
+    "/administrador/:id",
+    [
+        validarJWT,
+        check("id", "El id es obligatorio").isMongoId(),
+        validarInformacion
+    ],
+    obtenerAdminHistorial
+);
 
 router.post(
     "/",

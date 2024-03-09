@@ -1,20 +1,20 @@
 {
     "client": "Thunder Client",
     "collectionName": "Administrador",
-    "dateExported": "2024-03-11T01:16:06.858Z",
+    "dateExported": "2024-03-13T15:35:50.906Z",
     "version": "1.1",
     "folders": [],
     "requests": [
         {
-            "_id": "2c908685-c144-466d-9611-60eb034498df",
-            "colId": "8979fb60-7017-4fba-b34a-5ef4eb3f4018",
+            "_id": "50ac3498-75cb-40ea-8c3d-5028388a420c",
+            "colId": "5d4ab248-cda0-49e8-bab8-51ffe91f02b0",
             "containerId": "",
             "name": "Editar",
             "url": "http://localhost:3000/tiendaOnline/v1/usuarios/administrador/65ea52714d33600170df2ef0",
             "method": "PUT",
             "sortNum": 10000,
-            "created": "2024-03-10T23:19:37.015Z",
-            "modified": "2024-03-10T23:19:37.015Z",
+            "created": "2024-03-13T14:36:05.657Z",
+            "modified": "2024-03-13T14:36:05.657Z",
             "headers": [
                 {
                     "name": "x-token",
@@ -30,15 +30,15 @@
             "tests": []
         },
         {
-            "_id": "8492f4b7-a711-4798-b869-515cc53a3280",
-            "colId": "8979fb60-7017-4fba-b34a-5ef4eb3f4018",
+            "_id": "0ff341d8-c468-47eb-9cea-57b7d350f990",
+            "colId": "5d4ab248-cda0-49e8-bab8-51ffe91f02b0",
             "containerId": "",
             "name": "Eliminar",
             "url": "http://localhost:3000/tiendaOnline/v1/usuarios/administrador/65ea73d654a45d96b084cc4a",
             "method": "DELETE",
             "sortNum": 20000,
-            "created": "2024-03-10T23:19:37.016Z",
-            "modified": "2024-03-10T23:19:37.016Z",
+            "created": "2024-03-13T14:36:05.658Z",
+            "modified": "2024-03-13T14:36:05.658Z",
             "headers": [
                 {
                     "name": "x-token",
@@ -46,6 +46,26 @@
                 }
             ],
             "params": [],
+            "tests": []
+        },
+        {
+            "_id": "aa7e68ab-511f-480f-8c1a-3c0933b033ce",
+            "colId": "5d4ab248-cda0-49e8-bab8-51ffe91f02b0",
+            "containerId": "",
+            "name": "obtenerAdminHistorial",
+            "url": "http://localhost:3000/tiendaOnline/v1/carrito/administrador/65ebe2bb189941cf4f899213",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-03-13T15:32:17.361Z",
+            "modified": "2024-03-13T15:35:43.148Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
+                }
+            ],
+            "params": [],
+            "reqType": "get",
             "tests": []
         }
     ]

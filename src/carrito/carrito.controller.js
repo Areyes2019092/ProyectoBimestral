@@ -1,5 +1,6 @@
 import Producto from "../producto/producto.model.js";
 import Carrito from "./carrito.model.js";
+import Usuario from "../usuario/usuario.model.js";
 import Factura from "../factura/factura.model.js";
 
 //Verificacion para que el usuario solo pueda tener un carrito
@@ -12,7 +13,7 @@ export const hacerCarrito = async(req, res)=>{
     const nuevoCarrito = new Carrito({nombreCarrito: permitido._id, productos: [], cantidadTotal: 0})
     await nuevoCarrito.save();
     res.status(200).json({msg: 'Acaba de crear un carro de compras'})
-}
+};
 
 
 //Obtener el hisotial (factura)
@@ -24,71 +25,111 @@ export const obtenerFactura = async(req, res)=>{
         return res.status(404).json({msg: 'No puedes generar factura sin haber ordenado antes'})
     }
     res.status(200).json({compraRegistro});
-}
+};
+
+
+//Obtener el hisotial del admin
+export const obtenerAdminHistorial = async(req, res)=>{
+    const permitido = req.cliente;
+    const { id } = req.params;
+    if (permitido.rol !== "Administrador"){
+        return res.status(400).json({msg: 'Permisos erroneo'});
+    }
+    const existe = await Usuario.findById(id);
+    if(!existe){
+        return res.status(404).json({msg: 'El usuario no existe'});
+    }
+    // si no existen compras
+    //revisar populate carro al final de la linea
+    const historialDeCompras = await Factura.find({ cliente: id }).populate('carrito'); 
+    if(!historialDeCompras || historialDeCompras.length === 0 ){
+        return res.status(404).json({msg:'No se han hecho compras'});
+    }
+    res.status(200).json({historialDeCompras});
+};
 
 
 //Hacer una orden
-/** 
+/* 
+Cuando haces populate('productos.productos'), estás diciendo a 
+Mongoose que quieres llenar el campo productoss.productos del
+documento que recuperas de la base de datos. Esto significa que en 
+la colección CartShoppingModel, el campo products es una referencia
+a otra colección, y cada elemento de products tiene un campo llamado
+product que es una referencia a documentos en esa otra colección.
+*/
+//Hay que ver donde dice productos
 export const hacerCompra = async (req, res) => {
-    const permitido = req.cliente;
-    const cart = await Carrito.findOne({ nombreCarrito: permitido._id }).populate('productos.producto');
+    const usuarioAutenticado = req.cliente;
+    const cart = await Carrito.findOne({ nombreCarrito: usuarioAutenticado._id }).populate('productos.producto');
 
     if (!cart || cart.productos.length === 0) {
-        return res.status(404).json({ msg: "El carrito de compras está vacío" });
+        return res.status(404).json({ msg: "Shopping cart is empty" });
     }
 
     let total = 0;
     const productsDetails = []; 
 
     cart.productos.forEach(item => {
-        const productTotal = item.producto.precio * item.cantidadProducto;
+        const productTotal = item.producto.precio * item.ventas;
         total += productTotal;
 
         productsDetails.push({
-            nombre: item.producto.nombre,
-            cantidad: item.cantidadProducto,
-            total: productTotal
+            name: item.producto.name,
+            cantidadProducto: item.cantidadProducto,
+            cantidadTotal: productTotal
         });
     });
 
     const factura = new Factura({
         carrito: cart._id,
-        cliente: permitido._id,
-        total,
+        cliente: usuarioAutenticado._id,
+        compraTotal,
         productos: productsDetails 
     });
 
     for (const item of cart.productos) {
         const productId = item.producto._id;
-        const quantitySold = item.cantidadProducto;
+        const quantitySold = item.cantidadTotal;
 
-        await Producto.findByIdAndUpdate(productId, { $inc: { cantidadVentas: quantitySold, stock: -quantitySold } });
+        await Producto.findByIdAndUpdate(productId, { $inc: { ventas: quantitySold, existencia: -quantitySold } });
     }
 
-    // Limpiar carrito
     cart.productos = [];
     cart.cantidadTotal = 0; 
     await cart.save();
 
     await factura.save();
 
-    res.status(200).json({ msg: "Compra realizada con éxito", factura, productsDetails });
+    res.status(200).json({ msg: "Purchase completed successfully", factura, productsDetails });
 };
-**/
+
+
+
+
+
 export const agregrarProducto = async(req, res)=>{
     const permitido = req.cliente;
     const { producto, cantidadProducto } = req.body;
-    const product = await Producto.findOne({name: producto});
-    const carritoCompras = await Carrito.findOneAndUpdate(
-        {nombreCarrito: permitido._id},
-        {$inc:{ total: product.precio * cantidadProducto}, $addToSet: {productos: {product: product._id. cantidadProducto }}},        
-        { upsert: true, new: true }
-        );
-        if (!carritoCompras) {
-            return res.status(404).json({ msg: "No se encontro" });
-        }
-        if(!carritoCompras.nombreCarrito.equals(permitido._id)){
-            return res.status(404).json({ msg: "No permitido" });
-        }
-        res.status(200).json({ msg: "Producto agregado exitosamente" });
-}
+    const productoVariable = await Producto.findOne({ name: producto});
+    const carroVa = await Carrito.findOne({ nombreCarrito: permitido._id});
+    if(!carroVa){
+        return res.status(404).json({ msg: 'El carrito no existe' });
+    }if(!carroVa.nombreCarrito.equals(permitido._id)){
+        return res.status(400).json({ msg: 'No se puede crear el carrito' });
+    }
+    const productoAEspera = carroVa.productos.find(item => item.producto.equals(productoVariable._id));
+    const cantidadAEspera = ( productoAEspera ? productoAEspera.cantidadProducto : 0 ) + cantidadProducto;
+    if(cantidadAEspera > productoVariable.existencia){
+        return res.status(400).json({ msg: 'No se puede agregar tantos productos' });
+    }
+    if(productoAEspera){
+        productoAEspera.cantidadProducto += cantidadProducto;
+    }else{
+        carroVa.productos.push({ producto: productoVariable._id, cantidadProducto });
+    }
+    carroVa.cantidadTotal += productoVariable.precio * cantidadProducto;
+    await carroVa.save();
+    return res.status(200).json({ msg: 'Producto agregado' });
+
+};

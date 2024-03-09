@@ -1,11 +1,11 @@
-import usuarioModel from "../usuario/usuario.model.js";
+import Producto from "../producto/producto.model.js";
 import Categoria from "./categoria.model.js";
 import { response, request } from "express";
 
 export const publicarCategoria = async (req, res) => { 
-    const permitido = req.cliente;
     const { name } = req.body;
-    if (permitido.role !== "Administrador") { 
+    const permitido = req.cliente;
+    if (permitido.rol !== "Administrador") { 
         return res.status(400).json({ msg: "El usuario no puede realizar esta acción" });
     }
     try {
@@ -20,7 +20,7 @@ export const publicarCategoria = async (req, res) => {
 
 export const obtenerCategoria = async (req, res) => {
     const permitido = req.cliente;
-    if (permitido.role !== "Administrador") {
+    if (permitido.rol !== "Administrador") {
         return res.status(400).json({ msg: "El usuario no puede realizar esta acción" });
     }
     const monstrarCategorias = await Categoria.find({ estado: true });
@@ -31,9 +31,17 @@ export const obtenerCategoria = async (req, res) => {
 export const eliminarCategoria = async (req, res) => {
     const permitido = req.cliente;
     const { id } = req.params;
-    if (permitido.role !== "Administrador") {
+    const categoriaId = await Categoria.findOne({ name: 'Default' })
+    if (permitido.rol !== "Administrador") {
         return res.status(400).json({ msg: "El usuario no puede realizar esta acción" });
+    }if (id === String(categoriaId?._id)){
+        return res.status(400).json({msg: 'No puedes eliminar '});
     }
+    const categoriaEliminada = await Categoria.findById(id);
+    await Producto.updateMany(
+        { categoria: categoriaEliminada._id },
+        { $set: { categoria: categoriaId._id } }
+    );
     await Categoria.findByIdAndUpdate(id, { estado: false });
     res.status(200).json({ msg: 'Categoría eliminada exitosamente' });
 };
@@ -42,10 +50,11 @@ export const eliminarCategoria = async (req, res) => {
 export const actualizarCategoria = async (req, res) => {
     const permitido = req.cliente;
     const { id } = req.params;
-    if (permitido.role !== "Administrador") {
+    if (permitido.rol !== "Administrador") {
         return res.status(400).json({ msg: 'El usuario no puede realizar esta acción' });
     }
     const { name } = req.body;
     await Categoria.findByIdAndUpdate(id, { name: name });
-    res.status(200).json({ msg: 'Se actualizó la categoría' });
+    const categoriaActualizada = await Categoria.findById(id);
+    res.status(200).json({ msg: `Se actualizó la categoría ${categoriaActualizada}` });
 };

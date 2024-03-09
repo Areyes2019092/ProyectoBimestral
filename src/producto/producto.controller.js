@@ -37,6 +37,8 @@ export const unicoProducto = async(req, res)=>{
         res.status(404).json({msg: 'El producto que usted busca ya no se encuentra'})
     }
 };
+
+
 export const todosProducto = async (req, res) => {
     const { ordenar } = req.params; 
     let pipeline = [];
@@ -95,6 +97,8 @@ export const eliminarProducto = async(req, res) =>{
     await Producto.findByIdAndUpdate(id, {estado: false});
     res.status(200).json({msg: 'El prdducto se elimino correctamente'});
 }
+
+
 
 export const publicarProducto = async(req, res)=>{
     const permitido = req.cliente;

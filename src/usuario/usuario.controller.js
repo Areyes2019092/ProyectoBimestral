@@ -24,6 +24,8 @@ export const login = async (req, res) => {
   res.status(200).json({ msg: `Bienvenido, aqui esta su token: ${tok}` });
 };
 
+
+
 export const editarNombre = async (req, res) => {
   const permitido = req.cliente;
   const nombre = req.body;
@@ -33,6 +35,8 @@ export const editarNombre = async (req, res) => {
     .status(200)
     .json({ msg: `El usuario se actualizo correctamente ${nuevoCliente}` });
 };
+
+
 
 //El administrador puede eliminar perfiles
 export const administradorDelete = async (req, res) => {
@@ -52,11 +56,13 @@ export const administradorDelete = async (req, res) => {
   res.status(200).json({ msg: "El usuario se elimino" });
 };
 
+
+
 //Tengo que agregar nuevos datos
 export const registrar = async (req, res) => {
+  const { name, user, email, password } = req.body;
   var cliente;
   var rol;
-  const { name, user, email, password } = req.body;
   try {
     if (email.includes("@admin.gt")) {
       //si  cumple con @admin.gt se asignara el rol  Administrador
@@ -73,13 +79,9 @@ export const registrar = async (req, res) => {
     cliente.password = await bcryptjs.hash(password, salt);
 
     await cliente.save();
-    res
-      .status(200)
-      .json({ msg: `Usuario registrado correctamente ${cliente}` });
+    res.status(200).json({ msg: `Usuario registrado correctamente ${cliente}` });
   } catch (e) {
-    res
-      .status(500)
-      .json({ msg: `ERROR, El cliente no se pudo registrar ${e}` });
+    res.status(500).json({ msg: `ERROR, El cliente no se pudo registrar ${e}` });
   }
 };
 
@@ -98,19 +100,49 @@ export const eliminarUsuario = async (req, res) => {
 
 
 export const administradorEditar = async (req, res) => {
-    var { user, email,  password, ...resto } = req.body;
   const { id } = req.params;
+  var { name, password, rol } = req.body;
   const permitido = req.cliente;
-  const deshabilitado = await Usuario.findById(id);
-  if (permitido.rol !== "Administrador") {
-    return res.status(400).json({ msg: "Error" });
+  if(permitido.rol !== "Administrador"){
+    return res.status(400).json({
+      msg: 'No se cuentan con permisos'
+    });
   }
-  if (!deshabilitado) {
-    return res.status(400).json({ msg: "El usuario esta deshabilitado" });
-    }
-    await Usuario.findByIdAndUpdate(id, { resto });
-    res.status(200).json({ msg: 'Usuario Actualizado' });
+  const deshabilitado = await Usuario.findById(id);
+  if(!deshabilitado){
+    return res.status(404).json({
+      msg: 'Usuario no existe'
+    });
+  }if(!name){
+    name = deshabilitado.name;
+  }if(!password){
+    password = deshabilitado.password;
+  }else if(  password.lenght() < 5 ){
+    return res.status(400).json({
+      msg: 'Contraseña muy corta'
+    });
+  } else { 
+    const salt = bcryptjs.genSaltSync();
+    password = bcryptjs.hashSync(password, salt);
+  }
+  if(!rol){
+    rol = deshabilitado.rol;
+  }else if( rol !== "Administrador" && rol !== "Cliente" ){
+    return res.status(400).json({
+      msg: 'no existe rol'
+    });
+  }
+  await Usuario.findByIdAndUpdate(id, { name: name, password: password, rol: rol });
+  const UsuarioActualizado = await Usuario.findById(id);
+  return res.status(400).json({
+    msg: 'Usuario Actualizado',
+    UsuarioActualizado
+  });
 };
+
+
+
+
 
 export const editarContrasena = async (req, res) => {
   const permitido = req.cliente;

@@ -7,7 +7,7 @@ export const validarJWT = async(req, res, next) => {
         return res.status(400).json({ msg: "No existe el token" });
     }
     try {
-        const { uid } = JWT.verify(tok, process.env.SECRET_OR_PRIVATE_KEY);
+        const { uid } = JWT.verify(tok, process.env.SECRETORPRIVATEKEY);
         const cliente = await Cliente.findOne({ _id: uid });
 
         if (!cliente) {

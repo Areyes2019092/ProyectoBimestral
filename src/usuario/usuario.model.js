@@ -13,14 +13,13 @@ const UsuarioSchema = mongoose.Schema({
     type: String,
     required: [true, "El email del cliente es obligatorio"],
   },
-  //Me falta hacer el rol
   password: {
     type: String,
     required: [true, "La contrasña del cliente es obligatoria"],
   },
   rol: {
       type: String,
-      enum: ["Cliente", "Administrador"],
+      //enum: ["Cliente", "Administrador"],
       default: "Cliente"
   },
   estado: {
