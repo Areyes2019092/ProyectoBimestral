@@ -17,6 +17,14 @@ export const existeProducto = async(producto = "")=>{
     }
 }
 
+export const noExisteProducto = async(producto = "")=>{
+    const existencia = await Producto.findOne({name: producto});
+    if(!existencia){
+        throw new Error('El producto no existe')
+    }
+}
+
+
 //Voy a verificar si no existe la categoria
 export const noExisteCategoria = async(categoria = "")=>{
     const verificarCategoria = await Categoria.findOne({name: categoria });
