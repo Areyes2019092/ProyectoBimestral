@@ -37,7 +37,7 @@ export const dbConnection = async () => {
         });
 
     } catch (e) {
-        console.log('DataBase | Connection Failed', err)
+        console.log('DataBase | Connection Failed', e)
     }
 
 }

@@ -1,5 +1,5 @@
 import  JWT  from "jsonwebtoken";
-import Cliente from '../cliente/cliente.model.js';
+import Cliente from "../usuario/usuario.model.js";
 
 export const validarJWT = async(req, res, next) =>{
     const tok = req.header("x-token");
