@@ -1,74 +1,74 @@
 {
     "client": "Thunder Client",
     "collectionName": "Productos",
-    "dateExported": "2024-03-09T02:57:35.278Z",
+    "dateExported": "2024-03-11T01:15:46.891Z",
     "version": "1.1",
     "folders": [],
     "requests": [
         {
-            "_id": "c87671d5-1b2d-4618-b75f-eb7eee28ddac",
-            "colId": "44d654b9-aed7-46d8-81bb-134057e05760",
+            "_id": "cc46fe2f-2a66-4062-9dfe-3480962b3f53",
+            "colId": "703a6a82-ab44-44bf-a279-7bd8f97307c1",
             "containerId": "",
             "name": "crearProducto",
             "url": "http://localhost:3000/tiendaOnline/v1/productos",
             "method": "POST",
             "sortNum": 10000,
-            "created": "2024-03-09T02:22:29.036Z",
-            "modified": "2024-03-09T02:53:46.698Z",
+            "created": "2024-03-10T23:19:37.278Z",
+            "modified": "2024-03-10T23:59:02.335Z",
             "headers": [
                 {
                     "name": "x-token",
-                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWViODZlY2VkNmY4OWY0ZDgzOGQ0NGUiLCJpYXQiOjE3MDk5MzgwMjMsImV4cCI6MTcwOTk0MTYyM30.F26dKKdYtL2Qv-e48OpC1HMtqjClaplSYyN2X0_apwE"
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWVlNDE3MTY4ZjQ5MGQ5MGQwMmNkYTciLCJpYXQiOjE3MTAxMTMzMDgsImV4cCI6MTcxMDEyMDUwOH0.VD3einuVj3mj7n1vgRrKCEAvYNMaasppwNypMJVX6_M"
                 }
             ],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"producto\": \"Estufa\",\n  \"precio\" : 20000,\n  \"categoria\" : \"Educacion\",\n  \"existencia\" : 0\n}",
+                "raw": "{\n  \"producto\": \"Estufa\",\n  \"precio\" : 20000,\n  \"categoria\" : \"Entretenimiento\",\n  \"existencia\" : 0\n}",
                 "form": []
             },
             "reqType": "post",
             "tests": []
         },
         {
-            "_id": "8650ee19-845e-4af0-8441-ecc4e2004812",
-            "colId": "44d654b9-aed7-46d8-81bb-134057e05760",
+            "_id": "b156160b-6722-44cd-8e46-26727dd0244c",
+            "colId": "703a6a82-ab44-44bf-a279-7bd8f97307c1",
             "containerId": "",
             "name": "editarProducto",
-            "url": "http://localhost:3000/tiendaOnline/v1/productos/65eb8747ed6f89f4d838d45b",
+            "url": "http://localhost:3000/tiendaOnline/v1/productos/65ee49465f501fe080e5d781",
             "method": "PUT",
             "sortNum": 20000,
-            "created": "2024-03-09T02:22:29.037Z",
-            "modified": "2024-03-09T02:53:25.414Z",
+            "created": "2024-03-10T23:19:37.279Z",
+            "modified": "2024-03-11T00:21:40.441Z",
             "headers": [
                 {
                     "name": "x-token",
-                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWViODZlY2VkNmY4OWY0ZDgzOGQ0NGUiLCJpYXQiOjE3MDk5MzQzMjAsImV4cCI6MTcwOTkzNzkyMH0.cBvJtG7WJ9enwPlqd3H0C5ocaHcY3spx9SgqpIOxjHw"
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWVlNDE3MTY4ZjQ5MGQ5MGQwMmNkYTciLCJpYXQiOjE3MTAxMTMzMDgsImV4cCI6MTcxMDEyMDUwOH0.VD3einuVj3mj7n1vgRrKCEAvYNMaasppwNypMJVX6_M"
                 }
             ],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"producto\": \"Estuf\",\n  \"precio\" : 21111,\n  \"categoria\" : \"Entretenimiento\",\n  \"existencia\" : 2\n}",
+                "raw": "{\n  \"producto\": \"Nada\",\n  \"precio\" : 21111,\n  \"categoria\" : \"65ee46185f501fe080e5d771\",\n  \"existencia\" : 2\n}",
                 "form": []
             },
             "reqType": "put",
             "tests": []
         },
         {
-            "_id": "8e79db7b-7369-4f38-b207-ba5b5ca92bb7",
-            "colId": "44d654b9-aed7-46d8-81bb-134057e05760",
+            "_id": "5ef50e39-8d79-451b-87e8-1c5faef90985",
+            "colId": "703a6a82-ab44-44bf-a279-7bd8f97307c1",
             "containerId": "",
             "name": "getProductos",
             "url": "http://localhost:3000/tiendaOnline/v1/productos/productoOrdenar/categoria",
             "method": "GET",
             "sortNum": 20000,
-            "created": "2024-03-09T02:22:29.039Z",
-            "modified": "2024-03-09T02:42:43.259Z",
+            "created": "2024-03-10T23:19:37.281Z",
+            "modified": "2024-03-11T00:32:19.330Z",
             "headers": [
                 {
                     "name": "x-token",
-                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWViODZlY2VkNmY4OWY0ZDgzOGQ0NGUiLCJpYXQiOjE3MDk5NDE4MzUsImV4cCI6MTcwOTk0NTQzNX0.d2BKggr6_zUXYXeowdNEjcI605r-MWZ_nRLBfxUepqk"
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWVlNDE3MTY4ZjQ5MGQ5MGQwMmNkYTciLCJpYXQiOjE3MTAxMTMzMDgsImV4cCI6MTcxMDEyMDUwOH0.VD3einuVj3mj7n1vgRrKCEAvYNMaasppwNypMJVX6_M"
                 }
             ],
             "params": [],
@@ -76,19 +76,19 @@
             "tests": []
         },
         {
-            "_id": "5bdbdafb-bc93-4ce7-9b99-52f1aeecc06b",
-            "colId": "44d654b9-aed7-46d8-81bb-134057e05760",
+            "_id": "6bbc6794-eb41-441d-8dd6-fd6a5091fceb",
+            "colId": "703a6a82-ab44-44bf-a279-7bd8f97307c1",
             "containerId": "",
             "name": "eliminarProductos",
-            "url": "http://localhost:3000/tiendaOnline/v1/productos/65eb8747ed6f89f4d838d45b",
+            "url": "http://localhost:3000/tiendaOnline/v1/productos/65ee49465f501fe080e5d781",
             "method": "DELETE",
             "sortNum": 30000,
-            "created": "2024-03-09T02:22:29.038Z",
-            "modified": "2024-03-09T02:43:15.416Z",
+            "created": "2024-03-10T23:19:37.280Z",
+            "modified": "2024-03-11T00:33:02.787Z",
             "headers": [
                 {
                     "name": "x-token",
-                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWViODZlY2VkNmY4OWY0ZDgzOGQ0NGUiLCJpYXQiOjE3MDk5MzQzMjAsImV4cCI6MTcwOTkzNzkyMH0.cBvJtG7WJ9enwPlqd3H0C5ocaHcY3spx9SgqpIOxjHw"
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWVlNDE3MTY4ZjQ5MGQ5MGQwMmNkYTciLCJpYXQiOjE3MTAxMTMzMDgsImV4cCI6MTcxMDEyMDUwOH0.VD3einuVj3mj7n1vgRrKCEAvYNMaasppwNypMJVX6_M"
                 }
             ],
             "params": [],
@@ -96,15 +96,15 @@
             "tests": []
         },
         {
-            "_id": "6318f202-08ad-44cf-92c7-9d4706a39a45",
-            "colId": "44d654b9-aed7-46d8-81bb-134057e05760",
+            "_id": "8c63ddc2-f6e9-4482-8e35-ad0e33359242",
+            "colId": "703a6a82-ab44-44bf-a279-7bd8f97307c1",
             "containerId": "",
             "name": "obtenerProducto",
             "url": "http://localhost:3000/tiendaOnline/v1/product/buscarProducto/",
             "method": "GET",
             "sortNum": 30000,
-            "created": "2024-03-09T02:22:29.040Z",
-            "modified": "2024-03-09T02:45:03.716Z",
+            "created": "2024-03-10T23:19:37.282Z",
+            "modified": "2024-03-10T23:19:37.282Z",
             "headers": [
                 {
                     "name": "x-token",
@@ -117,7 +117,6 @@
                 "raw": "{\n  \"name\" : \"Estuf\"\n}",
                 "form": []
             },
-            "reqType": "get",
             "tests": []
         }
     ]

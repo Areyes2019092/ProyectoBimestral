@@ -1,24 +1,24 @@
 {
     "client": "Thunder Client",
     "collectionName": "Categoria",
-    "dateExported": "2024-03-09T02:57:29.395Z",
+    "dateExported": "2024-03-11T01:15:54.246Z",
     "version": "1.1",
     "folders": [],
     "requests": [
         {
-            "_id": "e8898502-9493-4be7-9fe6-494ef69b048a",
-            "colId": "6fdad24d-3277-40df-bcc7-247a86239987",
+            "_id": "045d5d16-693b-40a1-845f-37892fb08515",
+            "colId": "321e55de-b34b-4496-aa7a-48ab074c9acd",
             "containerId": "",
             "name": "publicarCategoria",
             "url": "http://localhost:3000/tiendaOnline/v1/categorias",
             "method": "POST",
             "sortNum": 10000,
-            "created": "2024-03-09T02:22:29.018Z",
-            "modified": "2024-03-09T02:36:43.443Z",
+            "created": "2024-03-10T23:19:37.195Z",
+            "modified": "2024-03-10T23:40:00.859Z",
             "headers": [
                 {
                     "name": "x-token",
-                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWViODZlY2VkNmY4OWY0ZDgzOGQ0NGUiLCJpYXQiOjE3MDk5MzQzMjAsImV4cCI6MTcwOTkzNzkyMH0.cBvJtG7WJ9enwPlqd3H0C5ocaHcY3spx9SgqpIOxjHw"
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWVlNDE3MTY4ZjQ5MGQ5MGQwMmNkYTciLCJpYXQiOjE3MTAxMTMzMDgsImV4cCI6MTcxMDEyMDUwOH0.VD3einuVj3mj7n1vgRrKCEAvYNMaasppwNypMJVX6_M"
                 }
             ],
             "params": [],
@@ -31,19 +31,19 @@
             "tests": []
         },
         {
-            "_id": "57b5f046-612b-4f2d-a314-17a7447a179c",
-            "colId": "6fdad24d-3277-40df-bcc7-247a86239987",
+            "_id": "f01993d3-6fd6-4ea8-9682-97c9e056ca9e",
+            "colId": "321e55de-b34b-4496-aa7a-48ab074c9acd",
             "containerId": "",
             "name": "actualizarCategoria",
-            "url": "http://localhost:3000/tiendaOnline/v1/categorias/65eb893a7439f86b582c5901",
+            "url": "http://localhost:3000/tiendaOnline/v1/categorias/65ee46185f501fe080e5d771",
             "method": "PUT",
             "sortNum": 20000,
-            "created": "2024-03-09T02:22:29.019Z",
-            "modified": "2024-03-09T02:37:46.195Z",
+            "created": "2024-03-10T23:19:37.196Z",
+            "modified": "2024-03-10T23:57:14.382Z",
             "headers": [
                 {
                     "name": "x-token",
-                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWViODZlY2VkNmY4OWY0ZDgzOGQ0NGUiLCJpYXQiOjE3MDk5MzgwMjMsImV4cCI6MTcwOTk0MTYyM30.F26dKKdYtL2Qv-e48OpC1HMtqjClaplSYyN2X0_apwE"
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWVlNDE3MTY4ZjQ5MGQ5MGQwMmNkYTciLCJpYXQiOjE3MTAxMTMzMDgsImV4cCI6MTcxMDEyMDUwOH0.VD3einuVj3mj7n1vgRrKCEAvYNMaasppwNypMJVX6_M"
                 }
             ],
             "params": [],
@@ -56,19 +56,19 @@
             "tests": []
         },
         {
-            "_id": "5e1495d4-3bb5-4df7-ae26-28b623e298c5",
-            "colId": "6fdad24d-3277-40df-bcc7-247a86239987",
+            "_id": "0fe4eb57-119f-492d-985b-b8b0229bde93",
+            "colId": "321e55de-b34b-4496-aa7a-48ab074c9acd",
             "containerId": "",
             "name": "getCategoria",
             "url": "http://localhost:3000/tiendaOnline/v1/categorias",
             "method": "GET",
             "sortNum": 20000,
-            "created": "2024-03-09T02:22:29.021Z",
-            "modified": "2024-03-09T02:38:07.281Z",
+            "created": "2024-03-10T23:19:37.198Z",
+            "modified": "2024-03-10T23:57:20.805Z",
             "headers": [
                 {
                     "name": "x-token",
-                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWViODZlY2VkNmY4OWY0ZDgzOGQ0NGUiLCJpYXQiOjE3MDk5MzgwMjMsImV4cCI6MTcwOTk0MTYyM30.F26dKKdYtL2Qv-e48OpC1HMtqjClaplSYyN2X0_apwE"
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWVlNDE3MTY4ZjQ5MGQ5MGQwMmNkYTciLCJpYXQiOjE3MTAxMTMzMDgsImV4cCI6MTcxMDEyMDUwOH0.VD3einuVj3mj7n1vgRrKCEAvYNMaasppwNypMJVX6_M"
                 }
             ],
             "params": [],
@@ -76,19 +76,19 @@
             "tests": []
         },
         {
-            "_id": "b3dc7648-d639-4f46-a41d-fe7f2cba51eb",
-            "colId": "6fdad24d-3277-40df-bcc7-247a86239987",
+            "_id": "309425d8-5901-44fb-960f-9ff9d4534a35",
+            "colId": "321e55de-b34b-4496-aa7a-48ab074c9acd",
             "containerId": "",
             "name": "eliminarCategoria",
-            "url": "http://localhost:3000/tiendaOnline/v1/categorias/65ea8f35e637d597954f97f2",
+            "url": "http://localhost:3000/tiendaOnline/v1/categorias/65ee46185f501fe080e5d771",
             "method": "DELETE",
             "sortNum": 30000,
-            "created": "2024-03-09T02:22:29.020Z",
-            "modified": "2024-03-09T02:38:29.282Z",
+            "created": "2024-03-10T23:19:37.197Z",
+            "modified": "2024-03-10T23:57:30.180Z",
             "headers": [
                 {
                     "name": "x-token",
-                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWVhNzQ2NTU0YTQ1ZDk2YjA4NGNjNTkiLCJpYXQiOjE3MDk4NzA4OTMsImV4cCI6MTcwOTg3NDQ5M30.PWqFyDrcMyG2SlEbtyVpTCABdbTO0vjrboH47yGTL3o"
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWVlNDE3MTY4ZjQ5MGQ5MGQwMmNkYTciLCJpYXQiOjE3MTAxMTMzMDgsImV4cCI6MTcxMDEyMDUwOH0.VD3einuVj3mj7n1vgRrKCEAvYNMaasppwNypMJVX6_M"
                 }
             ],
             "params": [],

@@ -1,20 +1,20 @@
 {
     "client": "Thunder Client",
     "collectionName": "Usuario",
-    "dateExported": "2024-03-09T02:57:39.344Z",
+    "dateExported": "2024-03-11T01:15:35.068Z",
     "version": "1.1",
     "folders": [],
     "requests": [
         {
-            "_id": "a21ced5b-3477-4ca8-939b-4ec75b482fbe",
-            "colId": "7176abbd-ae39-4e54-99f2-53f07c0c6bfb",
+            "_id": "f84ebae1-c8b0-4794-9952-adfdc4863540",
+            "colId": "d84a5e1e-0f12-40d0-b4eb-6d0ab288aa16",
             "containerId": "",
             "name": "login",
             "url": "http://localhost:3000/tiendaOnline/v1/usuarios",
             "method": "GET",
             "sortNum": 10000,
-            "created": "2024-03-09T02:22:29.057Z",
-            "modified": "2024-03-09T02:52:27.568Z",
+            "created": "2024-03-10T23:19:37.350Z",
+            "modified": "2024-03-10T23:19:37.350Z",
             "headers": [],
             "params": [],
             "body": {
@@ -22,43 +22,42 @@
                 "raw": "{\n  \"user\": \"Angelito\",\n  \"password\" : \"12345\"\n}",
                 "form": []
             },
-            "reqType": "get",
             "tests": []
         },
         {
-            "_id": "005807b8-abc2-4d74-9f29-9d6ee54cbafa",
-            "colId": "7176abbd-ae39-4e54-99f2-53f07c0c6bfb",
+            "_id": "aa2ef733-69db-4f38-be28-768b64a4520c",
+            "colId": "d84a5e1e-0f12-40d0-b4eb-6d0ab288aa16",
             "containerId": "",
             "name": "registrarse",
             "url": "http://localhost:3000/tiendaOnline/v1/usuarios",
             "method": "POST",
             "sortNum": 20000,
-            "created": "2024-03-09T02:22:29.058Z",
-            "modified": "2024-03-09T02:52:03.063Z",
+            "created": "2024-03-10T23:19:37.351Z",
+            "modified": "2024-03-10T23:40:20.485Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"name\" : \"Angel\",\n  \"user\" : \"Angelito\",\n  \"email\": \"angel@admin.gt\",\n  \"password\" : \"12345\"\n}",
+                "raw": "{\n  \"name\" : \"Angel\",\n  \"user\" : \"Angeito\",\n  \"email\": \"angel@dmin.gt\",\n  \"password\" : \"12345\"\n}",
                 "form": []
             },
             "reqType": "post",
             "tests": []
         },
         {
-            "_id": "7ac891e8-b747-492b-a144-027f60b26ede",
-            "colId": "7176abbd-ae39-4e54-99f2-53f07c0c6bfb",
+            "_id": "d2e1551d-d89b-42ab-9ce7-23e0c8b725a0",
+            "colId": "d84a5e1e-0f12-40d0-b4eb-6d0ab288aa16",
             "containerId": "",
             "name": "editarNombre",
             "url": "http://localhost:3000/tiendaOnline/v1/usuarios",
             "method": "PUT",
             "sortNum": 30000,
-            "created": "2024-03-09T02:22:29.059Z",
-            "modified": "2024-03-09T02:50:10.070Z",
+            "created": "2024-03-10T23:19:37.352Z",
+            "modified": "2024-03-10T23:28:40.488Z",
             "headers": [
                 {
                     "name": "x-token",
-                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWVhNTI2MzRkMzM2MDAxNzBkZjJlZWEiLCJpYXQiOjE3MDk4NTcwMTMsImV4cCI6MTcwOTg2MDYxM30.J_vEo5gUBRS4Da-Oh3ozOpBzu_9a-1ZbtczkAhnVTPY"
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWVlNDE3MTY4ZjQ5MGQ5MGQwMmNkYTciLCJpYXQiOjE3MTAxMTMzMDgsImV4cCI6MTcxMDEyMDUwOH0.VD3einuVj3mj7n1vgRrKCEAvYNMaasppwNypMJVX6_M"
                 }
             ],
             "params": [],
@@ -71,47 +70,52 @@
             "tests": []
         },
         {
-            "_id": "ced1bceb-72c1-4acb-81eb-fabfddb0c6f7",
-            "colId": "7176abbd-ae39-4e54-99f2-53f07c0c6bfb",
+            "_id": "2441e743-bd7d-430e-b073-dc39d66bcdf5",
+            "colId": "d84a5e1e-0f12-40d0-b4eb-6d0ab288aa16",
             "containerId": "",
             "name": "editarContraseña",
             "url": "http://localhost:3000/tiendaOnline/v1/usuarios/contrasena/",
             "method": "PUT",
             "sortNum": 40000,
-            "created": "2024-03-09T02:22:29.060Z",
-            "modified": "2024-03-09T02:49:48.337Z",
+            "created": "2024-03-10T23:19:37.353Z",
+            "modified": "2024-03-10T23:36:29.154Z",
             "headers": [
                 {
                     "name": "x-token",
-                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWVhNTI2MzRkMzM2MDAxNzBkZjJlZWEiLCJpYXQiOjE3MDk4NTcwMTMsImV4cCI6MTcwOTg2MDYxM30.J_vEo5gUBRS4Da-Oh3ozOpBzu_9a-1ZbtczkAhnVTPY"
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWVlNDE3MTY4ZjQ5MGQ5MGQwMmNkYTciLCJpYXQiOjE3MTAxMTMzMDgsImV4cCI6MTcxMDEyMDUwOH0.VD3einuVj3mj7n1vgRrKCEAvYNMaasppwNypMJVX6_M"
                 }
             ],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"contrasenaAnterior\" : \"12345\",\n  \"contrasenaNueva\" : \"1234567\"\n}",
+                "raw": "{\n  \"contrasenaAnterior\" : \"12345\",\n  \"contrasenaNueva\" : \"patito\"\n}",
                 "form": []
             },
             "reqType": "put",
             "tests": []
         },
         {
-            "_id": "04b44846-9089-4236-a06a-f5bb24293f8d",
-            "colId": "7176abbd-ae39-4e54-99f2-53f07c0c6bfb",
+            "_id": "2110fa64-69f7-4287-af97-fe0f3130c5c8",
+            "colId": "d84a5e1e-0f12-40d0-b4eb-6d0ab288aa16",
             "containerId": "",
             "name": "eliminarCuenta",
             "url": "http://localhost:3000/tiendaOnline/v1/usuarios/",
             "method": "DELETE",
             "sortNum": 50000,
-            "created": "2024-03-09T02:22:29.061Z",
-            "modified": "2024-03-09T02:48:02.581Z",
+            "created": "2024-03-10T23:19:37.355Z",
+            "modified": "2024-03-10T23:37:50.351Z",
             "headers": [
                 {
                     "name": "x-token",
-                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWVhNTI2MzRkMzM2MDAxNzBkZjJlZWEiLCJpYXQiOjE3MDk4NTcwMTMsImV4cCI6MTcwOTg2MDYxM30.J_vEo5gUBRS4Da-Oh3ozOpBzu_9a-1ZbtczkAhnVTPY"
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWVlNDE3MTY4ZjQ5MGQ5MGQwMmNkYTciLCJpYXQiOjE3MTAxMTMzMDgsImV4cCI6MTcxMDEyMDUwOH0.VD3einuVj3mj7n1vgRrKCEAvYNMaasppwNypMJVX6_M"
                 }
             ],
             "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"Password\" : \"patito\"\n}",
+                "form": []
+            },
             "reqType": "del",
             "tests": []
         }

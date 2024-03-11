@@ -29,7 +29,8 @@ router.get(
     [
         validarJWT,
         validarInformacion,
-    ], todosProducto
+    ],
+    todosProducto
 );
 
 router.delete(
@@ -46,13 +47,13 @@ router.put(
     "/:id",
     [
         validarJWT,
-        check("id","El id es obligatorio").isMongoId(),
-        //hacer mas validaciones
-        check("id").custom(productoId),
+        check("id", "El ID del producto es obligatorio").isMongoId().withMessage('El ID proporcionado no es válido'), // Validación del formato del ID
+       check("id").custom(productoId),
+        // Hacer otras validaciones
         validarInformacion,
-    ],editarProducto
+    ],
+    editarProducto
 );
-
 router.post(
     "/",
     [

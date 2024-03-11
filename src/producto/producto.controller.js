@@ -1,22 +1,23 @@
 import Producto from "./producto.model.js";
 import Categoria from "../categoria/categoria.model.js";
 
-export const editarProducto = async(req, res) =>{
+export const editarProducto = async (req, res) => {
     const { id } = req.params;
     const { producto, precio, categoria, existencia } = req.body;
     const permitido = req.cliente;
-    if(permitido.rol !== "Administrador"){
-        return res.status(400).json({msg: 'No tiene permisos'});
+    if (permitido.rol !== "Administrador") { 
+        return res.status(400).json({ msg: 'No tiene permisos' });
     }
-    try{
-        const actualizarProducto = await Producto.findByIdAndUpdate(id, {producto, precio, categoria, existencia}, {new: true});
-        if(!actualizarProducto){
-            return res.status(404).json({msg: 'El producto no se encontro'});
+  
+    try {
+        const actualizarProducto = await Producto.findByIdAndUpdate(id, { name: producto, precio, categoria, existencia }, { new: true });
+        if (!actualizarProducto) {
+            return res.status(404).json({ msg: 'El producto no se encontró' });
         }
-        res.status(200).json({msg: 'El producto se actualizo correctamente' })
-    }catch(e){
-        console.error("Error al actualizar el producto:",e);
-        res.status(500).json({msg: "Error"});
+        res.status(200).json({ msg: 'El producto se actualizó correctamente' });
+    } catch (e) {
+        console.error("Error al actualizar el producto:", e);
+        res.status(500).json({ msg: "Error" });
     }
 }
 
@@ -36,46 +37,52 @@ export const unicoProducto = async(req, res)=>{
         res.status(404).json({msg: 'El producto que usted busca ya no se encuentra'})
     }
 };
-
-export const todosProducto = async(req, res)=>{
-    const { order } = req.params;
+export const todosProducto = async (req, res) => {
+    const { ordenar } = req.params; 
     let pipeline = [];
-    if(order === 'categoria'){
-        pipeline.push(
-            {$match: {estado: true}},
-            {$group: {_id: '$categoria', products:{$push: '$$ROOT'}}}
-        );
-    }else if (order === 'ventas'){
-        pipeline.push(
-            { $match: {estado: true} },
-            { $sort: {ventas: -1} }
-        );
-    }else{
-        return res.status(400).json({msg: 'Datos incorrectos'});
-    }
-    try{
-        const productos = await Producto.aggregate(pipeline);
-        if (!productos.length){
-            return res.status(404).json({msg: 'No se encontraron productos'});
+    try {
+        if (ordenar === 'categoria') {
+            pipeline.push(
+                { $match: { estado: true } },
+                { $group: { _id: '$categoria', products: { $push: '$$ROOT' } } }
+            );
+        } else if (ordenar === 'ventas') {
+            pipeline.push(
+                { $match: { estado: true } },
+                { $sort: { ventas: -1 } }
+            );
+        } else {
+            return res.status(400).json({ msg: 'Datos incorrectos' });
         }
-        await Promise.all(productos.map(async(grupo)=>{
-            const categoria = await Categoria.findById(grupo._id);
-            //uso operador ternario para ahorrar espacio y que no sea tan largo
-            const nombre = categoria ? categoria.name : 'Desconocido';
-            grupo.productos.forEach(producto => {
-                producto.categoria = nombre;
-                if(producto.existencia === 0){
-                    producto.status = 'Ya no esta disponible';
-                }
-            });
-        }));
-        res.status(200).json({productos});
 
-    }catch(e){
+        const productos = await Producto.aggregate(pipeline);
+        
+        if (!productos || productos.length === 0) {
+            return res.status(404).json({ msg: 'No se encontraron productos' });
+        }
+
+        await Promise.all(productos.map(async (grupo) => {
+            const categoria = await Categoria.findById(grupo._id);
+            const nombre = categoria ? categoria.name : 'Desconocido';
+            // Verifica si grupo.products está definido antes de iterar sobre él
+            if (grupo.products) {
+                grupo.products.forEach(producto => {
+                    producto.categoria = nombre;
+                    if (producto.existencia === 0) {
+                        producto.status = 'Ya no está disponible';
+                    }
+                });
+            }
+        }));
+
+        res.status(200).json({ productos });
+    } catch (e) {
         console.error(`Error: ${e}`);
-        res.status(500).json({msg: 'Error interno del servidor'});
-    };
+        res.status(500).json({ msg: 'Error interno del servidor' });
+    }
 };
+
+
 
 
 
@@ -86,7 +93,7 @@ export const eliminarProducto = async(req, res) =>{
         return res.status(400).json({msg:'El usuario no tiene los permisos'});
     }
     await Producto.findByIdAndUpdate(id, {estado: false});
-    res.status(200).json({msg: 'El usuario se elimino correctamente'});
+    res.status(200).json({msg: 'El prdducto se elimino correctamente'});
 }
 
 export const publicarProducto = async(req, res)=>{
